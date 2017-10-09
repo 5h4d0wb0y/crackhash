@@ -78,7 +78,7 @@ def print_error(message):
     print(("[") + (Colors.RED) + (Colors.BOLD) + ("✖") + (Colors.ENDC) + ("] ") + (str(message)))
 
 class Cracker:
-    def md5(self):
+    def md5(self, hash):
         print_warning("Searching with md5decrypt.net ...")
         print_warning("Searching with https://hashkiller.co.uk/md5-decrypter.aspx ...")
         print_warning("Searching with md5hashing.net ...")
@@ -94,7 +94,7 @@ class Cracker:
             sys.exit()
         else:
             print_warning("Searching with md5.my-addr.com ...")
-            data = urlencode({"md5": args.hash, "x": "21", "y": "8"})
+            data = urlencode({"md5": hash, "x": "21", "y": "8"})
             html = urlopen("http://md5.my-addr.com/md5_decrypt-md5_cracker_online/md5_decoder_tool.php", data)
             find = html.read()
             match = search(r"<span class='middle_title'>Hashed string</span>: [^<]*</div>", find)
@@ -103,14 +103,14 @@ class Cracker:
                 sys.exit()
             else:
                 print_warning("Searching with nitrxgen.net ...")
-                url = "http://www.nitrxgen.net/md5db/" + args.hash
+                url = "http://www.nitrxgen.net/md5db/" + hash
                 purl = urlopen(url).read()
                 if len(purl) > 0:
                     print_status("Hash cracked: %s" % purl)
                     sys.exit()
                 else:
                     print_warning("Searching with http://hashcrack.com/ ...")
-                    data = urlencode({"auth": "8272hgt", "hash": args.hash, "string": "", "Submit": "Submit"})
+                    data = urlencode({"auth": "8272hgt", "hash": hash, "string": "", "Submit": "Submit"})
                     html = urlopen("http://hashcrack.com/index.php", data)
                     find = html.read()
                     match = search(r'<span class=hervorheb2>[^<]*</span></div></TD>', find)
@@ -121,10 +121,10 @@ class Cracker:
                         print_error("Sorry this hash is not present in our database.")
                         sys.exit()
 
-    def sha1(self):
+    def sha1(self, args):
         print_warning("Hash function: SHA1")
         print_warning("Searching with http://hashcrack.com/ ...")
-        data = urlencode({"auth": "8272hgt", "hash": args.hash, "string": "", "Submit": "Submit"})
+        data = urlencode({"auth": "8272hgt", "hash": hash, "string": "", "Submit": "Submit"})
         html = urlopen("http://hashcrack.com/index.php", data)
         find = html.read()
         match = search(r'<span class=hervorheb2>[^<]*</span></div></TD>', find)
@@ -133,7 +133,7 @@ class Cracker:
             sys.exit()
         else:
             print_warning("Searching with md5decrypt.net ...")
-            html = urlopen("http://md5decrypt.net/Api/api.php?hash=" + args.hash + "&hash_type=sha1&email=" + MD5DECRYPT_EMAIL + "&code=" + MD5DECRYPT_CODE)
+            html = urlopen("http://md5decrypt.net/Api/api.php?hash=" + hash + "&hash_type=sha1&email=" + MD5DECRYPT_EMAIL + "&code=" + MD5DECRYPT_CODE)
             find = html.read()
             if len(find) > 0:
                 print_status("Hash cracked: %s" % find)
@@ -145,10 +145,10 @@ class Cracker:
                 print_error("Sorry this hash is not present in our database.")
                 sys.exit()
 
-    def sha256(self):
+    def sha256(self, args):
         print_status("Hash function: SHA-256")
         print_warning("Searching with md5decrypt.net ...")
-        html = urlopen("http://md5decrypt.net/Api/api.php?hash=" + args.hash + "&hash_type=sha256&email=" + MD5DECRYPT_EMAIL + "&code=" + MD5DECRYPT_CODE)
+        html = urlopen("http://md5decrypt.net/Api/api.php?hash=" + hash + "&hash_type=sha256&email=" + MD5DECRYPT_EMAIL + "&code=" + MD5DECRYPT_CODE)
         find = html.read()
         if len(find) > 0:
             print_status("Hash cracked: %s" % find)
@@ -159,24 +159,24 @@ class Cracker:
             print_error("Sorry this hash is not present in our database.")
             sys.exit()
 
-    def sha384(self):
+    def sha384(self, args):
         print_status("Hash function: SHA-384")
         print_warning("Searching with md5decrypt.net ...")
         print_warning("Searching with md5hashing.net ...")
 
-    def sha512(self):
+    def sha512(self, args):
         print_status("Hash function: SHA-512")
         print_warning("Searching with md5decrypt.net ...")
         print_warning("Searching with md5hashing.net ...")
 
-    def rmd160(self):
+    def rmd160(self, args):
         print_status("Hash function: RIPEMD-160")
         print_warning("Searching with md5hashing.net ...")
 
-    def lm(self):
+    def lm(self, args):
         print_status("Hash function: LM")
         print_warning("Searching with http://hashcrack.com/ ...")
-        data = urlencode({"auth": "8272hgt", "hash": args.hash, "string": "", "Submit": "Submit"})
+        data = urlencode({"auth": "8272hgt", "hash": hash, "string": "", "Submit": "Submit"})
         html = urlopen("http://hashcrack.com/index.php", data)
         find = html.read()
         match = search(r'<span class=hervorheb2>[^<]*</span></div></TD>', find)
@@ -187,12 +187,12 @@ class Cracker:
             print_error("Sorry this hash is not present in our database.")
             sys.exit()
 
-    def ntlm(self):
+    def ntlm(self, args):
         print_status("Hash function: NTLM")
         print_warning("Searching with md5decrypt.net ...")
         print_warning("Searching with https://hashkiller.co.uk/ntlm-decrypter.aspx ...")
         print_warning("Searching with http://hashcrack.com/ ...")
-        data = urlencode({"auth": "8272hgt", "hash": args.hash, "string": "", "Submit": "Submit"})
+        data = urlencode({"auth": "8272hgt", "hash": hash, "string": "", "Submit": "Submit"})
         html = urlopen("http://hashcrack.com/index.php", data)
         find = html.read()
         match = search(r'<span class=hervorheb2>[^<]*</span></div></TD>', find)
@@ -203,10 +203,10 @@ class Cracker:
             print_error("Sorry this hash is not present in our database.")
             sys.exit()
 
-    def mysql(self):
+    def mysql(self, args):
         print_status("Hash function: MYSQL")
         print_warning("Searching with http://hashcrack.com/ ...")
-        data = urlencode({"auth": "8272hgt", "hash": args.hash, "string": "", "Submit": "Submit"})
+        data = urlencode({"auth": "8272hgt", "hash": hash, "string": "", "Submit": "Submit"})
         html = urlopen("http://hashcrack.com/index.php", data)
         find = html.read()
         match = search(r'<span class=hervorheb2>[^<]*</span></div></TD>', find)
@@ -217,32 +217,32 @@ class Cracker:
             print_error("Sorry this hash is not present in our database.")
             sys.exit()
 
-    def cisco(self):
+    def cisco(self, args):
         print_status("Hash function: CISCO")
         print_warning("Searching with http://password-decrypt.com/ ...")
         print_warning("Searching with https://www.m00nie.com/type-7-password-tool/ ...")
 
-    def juniper(self):
+    def juniper(self, args):
         print_status("Hash function: JUNIPER")
         print_warning("Searching with http://password-decrypt.com/ ...")
         print_warning("Searching with http://www.junostools.com/pdecrypt ...")
         print_warning("Searching with https://www.m00nie.com/juniper-type-9-password-tool/ ...")
 
-    def gost(self):
+    def gost(self, args):
         print_status("Hash function: GOST")
         print_warning("Searching with md5hashing.net ...")
         print_warning("Searching with codebeautify.org/encrypt-decrypt ...")
         print_warning("https://www.tools4noobs.com/online_tools/decrypt/ ...")
 
-    def whirlpool(self):
+    def whirlpool(self, args):
         print_status("Hash function: WHIRLPOOL")
         print_warning("Searching with md5hashing.net ...")
 
-    def ldap_md5(self):
+    def ldap_md5(self, args):
         print_status("Hash function: LDAP-MD5")
         print_warning("Searching with md5hashing.net ...")
 
-    def ldap_sha1(self):
+    def ldap_sha1(self, args):
         print_status("Hash function: LDAP-SHA1")
         print_warning("Searching with md5hashing.net ...")
 
@@ -286,34 +286,35 @@ class HashCracker:
         return args
 
     def run(self, args):
+        crack = Cracker()
         if len(args.hash) == 32 and args.algorithm == 'md5':
-            Cracker.md5(args.hash)
+            crack.md5(args.hash)
         elif len(args.hash) == 40 and args.algorithm == 'sha1':
-            Cracker.sha1(args.hash)
+            crack.sha1(args.hash)
         elif len(args.hash) == 56 and args.algorithm == 'sha256':
-            Cracker.sha256(args.hash)
+            crack.sha256(args.hash)
         elif len(args.hash) == 64 and args.algorithm == 'sha384':
-            Cracker.sha384(args.hash)
+            crack.sha384(args.hash)
         elif len(args.hash) == 64 and args.algorithm == 'sha512':
-            Cracker.sha512(args.hash)
+            crack.sha512(args.hash)
         elif len(args.hash) == 32 and args.algorithm == 'rmd160':
-            Cracker.rmd160(args.hash)
+            crack.rmd160(args.hash)
         elif len(args.hash) == 32 and args.algorithm == 'lm':
-            Cracker.lm(args.hash)
+            crack.lm(args.hash)
         elif len(args.hash) == 32 and args.algorithm == 'ntlm':
-            Cracker.ntlm(args.hash)
+            crack.ntlm(args.hash)
         elif len(args.hash) == 64 and args.algorithm == 'mysql':
-            Cracker.mysql(args.hash)
+            crack.mysql(args.hash)
         elif len(args.hash) == 64 and args.algorithm == 'juniper':
-            Cracker.juniper(args.hash)
+            crack.juniper(args.hash)
         elif len(args.hash) == 32 and args.algorithm == 'gost':
-            Cracker.gost(args.hash)
+            crack.gost(args.hash)
         elif len(args.hash) == 64 and args.algorithm == 'whirlpool':
-            Cracker.whirlpool(args.hash)
+            crack.whirlpool(args.hash)
         elif len(args.hash) == 64 and args.algorithm == 'ldap_md5':
-            Cracker.ldap_md5(args.hash)
+            crack.ldap_md5(args.hash)
         elif len(args.hash) == 64 and args.algorithm == 'ldap_sha1':
-            Cracker.ldap_sha1(args.hash)
+            crack.ldap_sha1(args.hash)
         else:
             print_error("This hash is not supported.")
 
