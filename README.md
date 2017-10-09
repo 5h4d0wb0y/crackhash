@@ -37,7 +37,11 @@ usage: hash-cracker.py [-h] [--algorithm <algorithm>] [--hash <hash>]
 optional arguments:
   -h, --help            show this help message and exit
   --algorithm <algorithm>
-  --hash <hash>
+                        Choose hash' algorithm between ['md5', 'sha1',
+                        'sha256', 'sha384', 'sha512', 'rmd160', 'lm', 'ntlm',
+                        'mysql', 'cisco', 'juniper', 'gost', 'whirlpool',
+                        'ldap_md5', 'ldap_sha1']
+  --hash <hash>         Specify a hash to crack
 
 ```
 
