@@ -41,6 +41,28 @@ optional arguments:
 
 ```
 
+# Installation
+
+```
+git clone https://github.com/5h4d0wb0y/hash-cracker.git
+cd hash-cracker
+pip install -r requirements.txt
+```
+
+# Examples
+
+Try to crack md5 hash:
+
+```
+python hash-cracker.py --algorithm md5 --hash 098f6bcd4621d373cade4e832627b4f6
+```
+
+Try to crack sha1 hash:
+
+```
+python hash-cracker.py --algorithm sha1 --hash A94A8FE5CCB19BA61C4C0873D391E987982FBBD3
+```
+
 # Credits
 
 Hash-Cracker is developed by [@5h4d0wb0y](https://twitter.com/5h4d0wb0y).

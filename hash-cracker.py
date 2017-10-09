@@ -262,17 +262,18 @@ class HashCracker:
 
     def validate_args(self):
         parser = argparse.ArgumentParser(description="")
-        parser.add_argument("--algorithm", metavar="<algorithm>", dest="algorithm", default=None, help="")
-        parser.add_argument("--hash", metavar="<hash>", dest="hash", default=None, help="")
+        parser.add_argument("--algorithm", metavar="<algorithm>", dest="algorithm", default=None, help="Choose hash' algorithm between %s" % ALGORITHMS)
+        parser.add_argument("--hash", metavar="<hash>", dest="hash", default=None, help="Specify a hash to crack")
         args = parser.parse_args()
 
         if not args.hash:
-            print_error("Missing --hash argument")
+            print_error("Missing --hash argument!")
             sys.exit(-1)
         if not args.algorithm:
-            print_error("Missing --algorithm argument")
+            print_error("Missing --algorithm argument!")
             sys.exit(-1)
         if args.algorithm not in ALGORITHMS:
+            print_error("Wrong --algorithm argument!")
             data = []
             for x in ALGORITHMS:
                 data.append([x])
