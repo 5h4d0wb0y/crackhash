@@ -14,10 +14,10 @@ Hash-Cracker is a tool which try to crack different types of hashes using free o
 Features:
 - [x] Detects hash
 - [x] MD5 Support
-- [x] SHA1 Support  
+- [x] SHA1 Support
 - [x] SHA256 Support
-- [ ] SHA384 Support
-- [ ] SHA512 Support
+- [x] SHA384 Support
+- [x] SHA512 Support
 - [ ] RMD160 Support
 - [x] LM Support
 - [x] NTLM Support
@@ -32,17 +32,16 @@ Features:
 # Usage
 
 ```
-usage: hash-cracker.py [-h] [--algorithm <algorithm>] [--hash <hash>]
+usage: hash-cracker.py [-h] [-a <algorithm>] [--hash <hash>]
 
 optional arguments:
   -h, --help            show this help message and exit
-  --algorithm <algorithm>
+  -a <algorithm>, --algorithm <algorithm>
                         Choose hash' algorithm between ['md5', 'sha1',
                         'sha256', 'sha384', 'sha512', 'rmd160', 'lm', 'ntlm',
                         'mysql', 'cisco', 'juniper', 'gost', 'whirlpool',
                         'ldap_md5', 'ldap_sha1']
   --hash <hash>         Specify a hash to crack
-
 ```
 
 # Installation

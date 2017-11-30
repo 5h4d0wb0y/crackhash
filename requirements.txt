@@ -1,2 +1,6 @@
 argparse
 terminaltables
+cfscrape==1.6.6
+Pillow==3.4.2
+pyquery==1.2.17
+requests[security]==2.5.3

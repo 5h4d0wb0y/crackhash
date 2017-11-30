@@ -79,10 +79,6 @@ def print_error(message):
 
 class Cracker:
     def md5(self, hash):
-        print_warning("Searching with md5decrypt.net ...")
-        print_warning("Searching with https://hashkiller.co.uk/md5-decrypter.aspx ...")
-        print_warning("Searching with md5hashing.net ...")
-        ##############################################################
         print_warning("Hash function: " + (Colors.YELLOW) + (Colors.BOLD) + "MD5" + (Colors.ENDC))
         print_warning("Searching with md5decryption.com ...")
         data = urlencode({"hash": args.hash, "submit": "Decrypt It!"})
@@ -118,8 +114,67 @@ class Cracker:
                         print_status("Hash cracked: %s" % match.group().split('hervorheb2>')[1][:-18])
                         sys.exit()
                     else:
-                        print_error("Sorry this hash is not present in our database.")
-                        sys.exit()
+                        print_warning("Searching with md5decrypt.net ...")
+                        html = urlopen(
+                            "http://md5decrypt.net/Api/api.php?hash=" + hash + "&hash_type=md5&email=" +
+                            MD5DECRYPT_EMAIL + "&code=" + MD5DECRYPT_CODE)
+                        find = html.read()
+                        if len(find) > 0:
+                            print_status("Hash cracked: %s" % find)
+                            sys.exit()
+                        else:
+                            import cfscrape
+                            import requests
+                            import StringIO
+                            from PIL import Image
+                            from pyquery import PyQuery
+                            print_warning("Searching with https://hashkiller.co.uk/md5-decrypter.aspx ...")
+                            scraper = cfscrape.create_scraper()
+                            response = scraper.get('https://www.hashkiller.co.uk/md5-decrypter.aspx')
+                            # Save headers and cookies, to be used in next request
+                            session = requests.session()
+                            session.headers = response.headers
+                            session.cookies = response.cookies
+                            query = PyQuery(response.content)
+                            image_path = query("#content1_imgCaptcha").attr("src")
+                            image_content = scraper.get('https://www.hashkiller.co.uk' + image_path).content
+                            # Trying to decaptcha image
+                            captcha_image = Image.open(StringIO.StringIO(image_content))
+                            captcha_image.show()
+                            while True:
+                                captcha = raw_input(("[") + (Colors.YELLOW) + (Colors.BOLD) + ("!") + (Colors.ENDC) + (
+                                    "] ") + "Input captcha: ")
+                                if len(captcha) != 6:
+                                    print_error("You must input the correct captcha!")
+                                    continue
+                                else:
+                                    break
+                            scraper = cfscrape.create_scraper(sess=scraper)
+                            response = scraper.post('https://www.hashkiller.co.uk/md5-decrypter.aspx', data={
+                                'ctl00$ScriptMan1': 'ctl00$content1$updDecrypt|ctl00$content1$btnSubmit',
+                                'ctl00$content1$txtInput': hash,
+                                'ctl00$content1$txtCaptcha': captcha,
+                                '__EVENTTARGET': '',
+                                '__EVENTARGUMENT': '',
+                                '__VIEWSTATE': query("#__VIEWSTATE").attr("value"),
+                                '__EVENTVALIDATION': query("#__EVENTVALIDATION").attr("value"),
+                                '__ASYNCPOST': 'true',
+                                'ctl00$content1$btnSubmit': 'Submit',
+                                query('#content1_pnlStatus input').attr('name'): query(
+                                    '#content1_pnlStatus input').attr(
+                                    'value')
+                            })
+                            response = PyQuery(response.content)
+                            status = response('#content1_lblStatus').text()
+                            result = response('#content1_lblResults .text-green').text()
+                            if 'Failed' in status:
+                                print_error("Sorry this hash is not present in our database.")
+                                sys.exit()
+                            elif 'CAPTCHA' in status:
+                                print_error("The CAPTCHA code you specified is wrong!")
+                            else:
+                                print_status("Hash cracked: %s" % result)
+                                sys.exit()
 
     def sha1(self, args):
         print_warning("Hash function: SHA1")
@@ -139,11 +194,65 @@ class Cracker:
                 print_status("Hash cracked: %s" % find)
                 sys.exit()
             else:
-                print_warning("Searching with https://hashkiller.co.uk/sha1-decrypter.aspx ...")
                 print_warning("Searching with md5hashing.net ...")
-                ##
-                print_error("Sorry this hash is not present in our database.")
-                sys.exit()
+                html = urlopen("https://md5hashing.net/hash/sha1/" + hash)
+                find = html.read()
+                match = search(r'<span id="decodedValue">[^<]*</span>', find)
+                if match:
+                    print("Hash cracked: %s" % match)  # % match.group().split('hervorheb2>')[1][:-18])
+                    sys.exit()
+                else:
+                    import cfscrape
+                    import requests
+                    import StringIO
+                    from PIL import Image
+                    from pyquery import PyQuery
+                    print_warning("Searching with https://hashkiller.co.uk/sha1-decrypter.aspx ...")
+                    scraper = cfscrape.create_scraper()
+                    response = scraper.get('https://www.hashkiller.co.uk/sha1-decrypter.aspx')
+                    # Save headers and cookies, to be used in next request
+                    session = requests.session()
+                    session.headers = response.headers
+                    session.cookies = response.cookies
+                    query = PyQuery(response.content)
+                    image_path = query("#content1_imgCaptcha").attr("src")
+                    image_content = scraper.get('https://www.hashkiller.co.uk' + image_path).content
+                    # Trying to decaptcha image
+                    captcha_image = Image.open(StringIO.StringIO(image_content))
+                    captcha_image.show()
+                    while True:
+                        captcha = raw_input(("[") + (Colors.YELLOW) + (Colors.BOLD) + ("!") + (Colors.ENDC) + (
+                        "] ") + "Input captcha: ")
+                        if len(captcha) != 6:
+                            print_error("You must input the correct captcha!")
+                            continue
+                        else:
+                            break
+                    scraper = cfscrape.create_scraper(sess=scraper)
+                    response = scraper.post('https://www.hashkiller.co.uk/sha1-decrypter.aspx', data={
+                        'ctl00$ScriptMan1': 'ctl00$content1$updDecrypt|ctl00$content1$btnSubmit',
+                        'ctl00$content1$txtInput': hash,
+                        'ctl00$content1$txtCaptcha': captcha,
+                        '__EVENTTARGET': '',
+                        '__EVENTARGUMENT': '',
+                        '__VIEWSTATE': query("#__VIEWSTATE").attr("value"),
+                        '__EVENTVALIDATION': query("#__EVENTVALIDATION").attr("value"),
+                        '__ASYNCPOST': 'true',
+                        'ctl00$content1$btnSubmit': 'Submit',
+                        query('#content1_pnlStatus input').attr('name'): query('#content1_pnlStatus input').attr(
+                            'value')
+                    })
+                    response = PyQuery(response.content)
+                    status = response('#content1_lblStatus').text()
+                    result = response('#content1_lblResults .text-green').text()
+                    if 'Failed' in status:
+                        print_error("Sorry this hash is not present in our database.")
+                        sys.exit()
+                    elif 'CAPTCHA' in status:
+                        print_error("The CAPTCHA code you specified is wrong!")
+                    else:
+                        print_status("Hash cracked: %s" % result)
+                        sys.exit()
 
     def sha256(self, args):
         print_status("Hash function: SHA-256")
@@ -162,12 +271,26 @@ class Cracker:
     def sha384(self, args):
         print_status("Hash function: SHA-384")
         print_warning("Searching with md5decrypt.net ...")
-        print_warning("Searching with md5hashing.net ...")
+        html = urlopen(
+            "http://md5decrypt.net/Api/api.php?hash=" + hash + "&hash_type=sha384&email=" + MD5DECRYPT_EMAIL + "&code=" + MD5DECRYPT_CODE)
+        find = html.read()
+        if len(find) > 0:
+            print_status("Hash cracked: %s" % find)
+            sys.exit()
+        else:
+            print_warning("Searching with md5hashing.net ...")
 
     def sha512(self, args):
         print_status("Hash function: SHA-512")
         print_warning("Searching with md5decrypt.net ...")
-        print_warning("Searching with md5hashing.net ...")
+        html = urlopen(
+            "http://md5decrypt.net/Api/api.php?hash=" + hash + "&hash_type=sha512&email=" + MD5DECRYPT_EMAIL + "&code=" + MD5DECRYPT_CODE)
+        find = html.read()
+        if len(find) > 0:
+            print_status("Hash cracked: %s" % find)
+            sys.exit()
+        else:
+            print_warning("Searching with md5hashing.net ...")
 
     def rmd160(self, args):
         print_status("Hash function: RIPEMD-160")
@@ -190,18 +313,71 @@ class Cracker:
     def ntlm(self, args):
         print_status("Hash function: NTLM")
         print_warning("Searching with md5decrypt.net ...")
-        print_warning("Searching with https://hashkiller.co.uk/ntlm-decrypter.aspx ...")
-        print_warning("Searching with http://hashcrack.com/ ...")
-        data = urlencode({"auth": "8272hgt", "hash": hash, "string": "", "Submit": "Submit"})
-        html = urlopen("http://hashcrack.com/index.php", data)
+        html = urlopen(
+            "http://md5decrypt.net/Api/api.php?hash=" + hash + "&hash_type=ntlm&email=" + MD5DECRYPT_EMAIL + "&code=" + MD5DECRYPT_CODE)
         find = html.read()
-        match = search(r'<span class=hervorheb2>[^<]*</span></div></TD>', find)
-        if match:
-            print_status("Hash cracked: %s" % match.group().split('hervorheb2>')[1][:-18])
+        if len(find) > 0:
+            print_status("Hash cracked: %s" % find)
             sys.exit()
         else:
-            print_error("Sorry this hash is not present in our database.")
-            sys.exit()
+            print_warning("Searching with http://hashcrack.com/ ...")
+            data = urlencode({"auth": "8272hgt", "hash": hash, "string": "", "Submit": "Submit"})
+            html = urlopen("http://hashcrack.com/index.php", data)
+            find = html.read()
+            match = search(r'<span class=hervorheb2>[^<]*</span></div></TD>', find)
+            if match:
+                print_status("Hash cracked: %s" % match.group().split('hervorheb2>')[1][:-18])
+                sys.exit()
+            else:
+                import cfscrape
+                import requests
+                import StringIO
+                from PIL import Image
+                from pyquery import PyQuery
+                print_warning("Searching with https://hashkiller.co.uk/ntlm-decrypter.aspx ...")
+                scraper = cfscrape.create_scraper()
+                response = scraper.get('https://www.hashkiller.co.uk/ntlm-decrypter.aspx')
+                # Save headers and cookies, to be used in next request
+                session = requests.session()
+                session.headers = response.headers
+                session.cookies = response.cookies
+                query = PyQuery(response.content)
+                image_path = query("#content1_imgCaptcha").attr("src")
+                image_content = scraper.get('https://www.hashkiller.co.uk' + image_path).content
+                # Trying to decaptcha image
+                captcha_image = Image.open(StringIO.StringIO(image_content))
+                captcha_image.show()
+                while True:
+                    captcha = raw_input(("[") + (Colors.YELLOW) + (Colors.BOLD) + ("!") + (Colors.ENDC) + ("] ") +"Input captcha: ")
+                    if len(captcha) != 6:
+                        print_error("You must input the correct captcha!")
+                        continue
+                    else:
+                        break
+                scraper = cfscrape.create_scraper(sess=scraper)
+                response = scraper.post('https://www.hashkiller.co.uk/ntlm-decrypter.aspx', data={
+                    'ctl00$ScriptMan1': 'ctl00$content1$updDecrypt|ctl00$content1$btnSubmit',
+                    'ctl00$content1$txtInput': hash,
+                    'ctl00$content1$txtCaptcha': captcha,
+                    '__EVENTTARGET': '',
+                    '__EVENTARGUMENT': '',
+                    '__VIEWSTATE': query("#__VIEWSTATE").attr("value"),
+                    '__EVENTVALIDATION': query("#__EVENTVALIDATION").attr("value"),
+                    '__ASYNCPOST': 'true',
+                    'ctl00$content1$btnSubmit': 'Submit',
+                    query('#content1_pnlStatus input').attr('name'): query('#content1_pnlStatus input').attr('value')
+                })
+                response = PyQuery(response.content)
+                status = response('#content1_lblStatus').text()
+                result = response('#content1_lblResults .text-green').text()
+                if 'Failed' in status:
+                    print_error("Sorry this hash is not present in our database.")
+                    sys.exit()
+                elif 'CAPTCHA' in status:
+                    print_error("The CAPTCHA code you specified is wrong!")
+                else:
+                    print_status("Hash cracked: %s" % result)
+                    sys.exit()
 
     def mysql(self, args):
         print_status("Hash function: MYSQL")
@@ -262,7 +438,7 @@ class HashCracker:
 
     def validate_args(self):
         parser = argparse.ArgumentParser(description="")
-        parser.add_argument("--algorithm", metavar="<algorithm>", dest="algorithm", default=None, help="Choose hash' algorithm between %s" % ALGORITHMS)
+        parser.add_argument("-a","--algorithm", metavar="<algorithm>", dest="algorithm", default=None, help="Choose hash' algorithm between %s" % ALGORITHMS)
         parser.add_argument("--hash", metavar="<hash>", dest="hash", default=None, help="Specify a hash to crack")
         args = parser.parse_args()
 
