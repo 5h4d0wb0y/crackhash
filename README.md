@@ -1,15 +1,15 @@
 ```
   /\  /\__ _ ___| |__         / __\ __ __ _  ___| | _____ _ __ 
  / /_/ / _` / __| '_ \ _____ / / | '__/ _` |/ __| |/ / _ \ '__|
-/ __  / (_| \__ \ | | |_____/ /__| | | (_| | (__|   <  __/ |   
-\/ /_/ \__,_|___/_| |_|     \____/_|  \__,_|\___|_|\_\___|_|   v1.0
+/ __  / (_| \__ \ | | |_____/ /__| | | (_| | (__|   <  __/ |
+\/ /_/ \__,_|___/_| |_|     \____/_|  \__,_|\___|_|\_\___|_|   v1.2
                                                  @5h4d0wb0y
 
 ```
 
 # Description
 
-Hash-Cracker is a tool which try to crack different types of hashes using free online services.
+Hash-Cracker is a tool that try to crack different types of hashes using free online services.
 
 Features:
 - [x] Detects hash
@@ -18,12 +18,12 @@ Features:
 - [x] SHA256 Support
 - [x] SHA384 Support
 - [x] SHA512 Support
-- [ ] RMD160 Support
 - [x] LM Support
 - [x] NTLM Support
 - [x] MYSQL Support
-- [ ] CISCO Support
-- [ ] JUNIPER Support
+- [x] CISCO TYPE 7 Support
+- [x] JUNIPER TYPE 9 Support
+- [ ] RMD160 Support
 - [ ] GOST Support
 - [ ] WHIRLPOOL Support
 - [ ] LDAP_MD5 Support
@@ -32,16 +32,17 @@ Features:
 # Usage
 
 ```
-usage: hash-cracker.py [-h] [-a <algorithm>] [--hash <hash>]
+usage: hash-cracker.py [-h] [-A <algorithm>] [-H <hash>]
 
 optional arguments:
   -h, --help            show this help message and exit
-  -a <algorithm>, --algorithm <algorithm>
+  -A <algorithm>, --algorithm <algorithm>
                         Choose hash' algorithm between ['md5', 'sha1',
                         'sha256', 'sha384', 'sha512', 'rmd160', 'lm', 'ntlm',
                         'mysql', 'cisco', 'juniper', 'gost', 'whirlpool',
                         'ldap_md5', 'ldap_sha1']
-  --hash <hash>         Specify a hash to crack
+  -H <hash>, --hash <hash>
+                        Specify a hash to crack
 ```
 
 # Installation
@@ -68,4 +69,4 @@ python hash-cracker.py --algorithm sha1 --hash A94A8FE5CCB19BA61C4C0873D391E9879
 
 # Credits
 
-Hash-Cracker is developed by [@5h4d0wb0y](https://twitter.com/5h4d0wb0y).
+Hash-Cracker was developed by [@5h4d0wb0y](https://twitter.com/5h4d0wb0y).
