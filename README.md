@@ -28,7 +28,22 @@ Features:
 - [ ] WHIRLPOOL Support
 - [ ] LDAP_MD5 Support
 - [ ] LDAP_SHA1 Support
-    
+
+
+# Available Services
+
+It checks the hash in the following services on-line:
+
+- [x] hashkiller.co.uk
+- [x] hashcrack.com
+- [x] m00nie.com
+- [x] md5.my-addr.com
+- [x] md5decrypt.net
+- [ ] md5hashing.net
+- [x] nitrxgen.net
+- [x] password-decrypt.com
+
+
 # Usage
 
 ```
@@ -45,6 +60,7 @@ optional arguments:
                         Specify a hash to crack
 ```
 
+
 # Installation
 
 ```
@@ -52,6 +68,7 @@ git clone https://github.com/5h4d0wb0y/hash-cracker.git
 cd hash-cracker
 pip install -r requirements.txt
 ```
+
 
 # Examples
 
@@ -66,6 +83,7 @@ Try to crack sha1 hash:
 ```
 python hash-cracker.py --algorithm sha1 --hash A94A8FE5CCB19BA61C4C0873D391E987982FBBD3
 ```
+
 
 # Credits
 
