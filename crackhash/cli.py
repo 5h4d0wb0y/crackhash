@@ -3,7 +3,6 @@
 """Console script for crackhash."""
 import sys
 import click
-from terminaltables import SingleTable #AsciiTable
 
 from crackhash import helpers
 from crackhash import __author__, __version__
