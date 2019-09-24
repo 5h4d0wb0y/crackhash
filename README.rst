@@ -31,9 +31,10 @@ Crackhash is a tool that try to crack different types of hashes using free onlin
 Features
 --------
 
+* Browser supports proxy configuration
 * Automatic hash type identification
 * Can crack hashes from a file 
-* Algorith supported:
+* Algorith supported
         * MD5 - RFC 1321
         * SHA1 - RFC 3174 (FIPS 180-3)
         * SHA256 - FIPS 180-3
