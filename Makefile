@@ -24,10 +24,10 @@ for line in sys.stdin:
 endef
 export PRINT_HELP_PYSCRIPT
 
-BROWSER := python -c "$$BROWSER_PYSCRIPT"
+BROWSER := python3 -c "$$BROWSER_PYSCRIPT"
 
-help:
-	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+help: ## show this
+	@python3 -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
 
@@ -54,7 +54,7 @@ lint: ## check style with flake8
 	flake8 crackhash tests
 
 test: ## run tests quickly with the default Python
-	python setup.py test
+	python3 setup.py test
 
 test-all: ## run tests on every Python version with tox
 	tox
@@ -77,12 +77,12 @@ servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
-	python setup.py bdist_wheel
+	python3 setup.py sdist
+	python3 setup.py bdist_wheel
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+	python3 setup.py install
 
 VERSION = $(shell cat crackhash/__init__.py| grep '__version__ = ' | cut -d "'" -f 2)
 bump-patch: ## bump the patch version
@@ -98,7 +98,8 @@ bump-major: ## bump the major version
 	@echo Bumped to version $(VERSION)
 
 changelog: ## update changelog to the latest release
-	python setup.py changelog
+	python3 setup.py changelog
 
 release: dist ## package and upload a release
 	twine upload dist/*
+	
