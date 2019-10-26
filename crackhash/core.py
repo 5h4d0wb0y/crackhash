@@ -2,10 +2,8 @@
 
 """Main module."""
 
-import sys
 import base64
 import random
-import hashlib
 from yaspin import yaspin
 from .helpers import *
 from .scraper import *
@@ -27,7 +25,15 @@ USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.812.0 Safari/535.1"
 ]
 
-md5 = [myaddr, nitrxgen, cmd5, hashcrack, md5decrypt, hashtoolkit, md5hashing, hashkiller]
+md5 = [
+    myaddr,
+    nitrxgen,
+    cmd5,
+    hashcrack,
+    md5decrypt,
+    hashtoolkit,
+    md5hashing,
+    hashkiller]
 sha1 = [md5decrypt, cmd5, md5hashing, hashkiller]
 sha256 = [md5decrypt, cmd5, md5hashing]
 sha384 = [md5decrypt, cmd5, md5hashing]
@@ -43,16 +49,24 @@ cisco = [passworddecrypt, m00nie, firewallruletest, ifm, ibeast]
 juniper = [passworddecrypt, m00nie]
 gost = [md5hashing]
 whirlpool = [md5hashing]
-ldap_md5 = [myaddr, nitrxgen, hashcrack, md5decrypt, hashtoolkit, md5hashing, hashkiller]
+ldap_md5 = [
+    myaddr,
+    nitrxgen,
+    hashcrack,
+    md5decrypt,
+    hashtoolkit,
+    md5hashing,
+    hashkiller]
 ldap_sha1 = [md5decrypt, md5hashing, hashkiller]
 
+
 class Crackhash():
-    
+
     def __init__(self, proxy=None):
         self.browser = Browser()
         self.ua = random.choice(USER_AGENTS)
         self.result = {}
-    
+
     def start(self, proxy=None):
         if proxy:
             self.browser.start(headless=True, proxy=proxy, user_agent=self.ua)
@@ -101,7 +115,7 @@ class Crackhash():
         elif hashvalue.startswith('{SHA}') and algorithm == 'ldap_sha1':
             res = True
         else:
-            res =False
+            res = False
 
         return res
 
@@ -176,7 +190,7 @@ class Crackhash():
         elif algorithm == 'juniper':
             self.check_juniper(hashvalue)
         elif algorithm == 'cisco':
-                self.check_cisco(hashvalue)
+            self.check_cisco(hashvalue)
         elif algorithm == 'gost':
             self.check_gost(hashvalue)
         elif algorithm == 'whirlpool':
@@ -204,12 +218,18 @@ class Crackhash():
                 match = api(self.browser, hash, 'md5')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if md5.index(api) == len(md5)-1 and not match:
+                    if md5.index(api) == len(md5) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_sha1(self, hash):
         for api in sha1:
@@ -217,12 +237,18 @@ class Crackhash():
                 match = api(self.browser, hash, 'sha1')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if sha1.index(api) == len(sha1)-1 and not match:
+                    if sha1.index(api) == len(sha1) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_sha256(self, hash):
         for api in sha256:
@@ -230,12 +256,18 @@ class Crackhash():
                 match = api(self.browser, hash, 'sha256')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if sha256.index(api) == len(sha256)-1 and not match:
+                    if sha256.index(api) == len(sha256) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_sha384(self, hash):
         for api in sha384:
@@ -243,12 +275,18 @@ class Crackhash():
                 match = api(self.browser, hash, 'sha384')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if sha384.index(api) == len(sha384)-1 and not match:
+                    if sha384.index(api) == len(sha384) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_sha512(self, hash):
         for api in sha512:
@@ -256,12 +294,18 @@ class Crackhash():
                 match = api(self.browser, hash, 'sha512')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if sha512.index(api) == len(sha512)-1 and not match:
+                    if sha512.index(api) == len(sha512) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_rmd128(self, hash):
         for api in rmd128:
@@ -269,25 +313,37 @@ class Crackhash():
                 match = api(self.browser, hash, 'rmd128')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if rmd128.index(api) == len(rmd128)-1 and not match:
+                    if rmd128.index(api) == len(rmd128) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
-    
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
+
     def check_rmd160(self, hash):
         for api in rmd160:
             with yaspin(text="Processing...", color="cyan") as sp:
                 match = api(self.browser, hash, 'rmd160')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if rmd160.index(api) == len(rmd160)-1 and not match:
+                    if rmd160.index(api) == len(rmd160) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_rmd256(self, hash):
         for api in rmd256:
@@ -295,38 +351,56 @@ class Crackhash():
                 match = api(self.browser, hash, 'rmd256')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if rmd256.index(api) == len(rmd256)-1 and not match:
+                    if rmd256.index(api) == len(rmd256) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
-    
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
+
     def check_rmd320(self, hash):
         for api in rmd320:
             with yaspin(text="Processing...", color="cyan") as sp:
                 match = api(self.browser, hash, 'rmd320')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if rmd320.index(api) == len(rmd320)-1 and not match:
+                    if rmd320.index(api) == len(rmd320) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
-  
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
+
     def check_lm(self, hash):
         for api in lm:
             with yaspin(text="Processing...", color="cyan") as sp:
                 match = api(self.browser, hash, 'lm')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if lm.index(api) == len(lm)-1 and not match:
+                    if lm.index(api) == len(lm) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_ntlm(self, hash):
         for api in ntlm:
@@ -334,12 +408,18 @@ class Crackhash():
                 match = api(self.browser, hash, 'ntlm')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if ntlm.index(api) == len(ntlm)-1 and not match:
+                    if ntlm.index(api) == len(ntlm) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_mysql(self, hash):
         for api in mysql:
@@ -347,12 +427,18 @@ class Crackhash():
                 match = api(self.browser, hash, 'mysql')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if mysql.index(api) == len(mysql)-1 and not match:
+                    if mysql.index(api) == len(mysql) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_cisco(self, hash):
         for api in cisco:
@@ -360,12 +446,18 @@ class Crackhash():
                 match = api(self.browser, hash, 'cisco')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if cisco.index(api) == len(cisco)-1 and not match:
+                    if cisco.index(api) == len(cisco) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_juniper(self, hash):
         for api in juniper:
@@ -373,12 +465,18 @@ class Crackhash():
                 match = api(self.browser, hash, 'juniper')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if juniper.index(api) == len(juniper)-1 and not match:
+                    if juniper.index(api) == len(juniper) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_gost(self, hash):
         for api in gost:
@@ -386,12 +484,18 @@ class Crackhash():
                 match = api(self.browser, hash, 'gost')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if gost.index(api) == len(gost)-1 and not match:
+                    if gost.index(api) == len(gost) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_whirlpool(self, hash):
         for api in whirlpool:
@@ -399,37 +503,59 @@ class Crackhash():
                 match = api(self.browser, hash, 'whirlpool')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if whirlpool.index(api) == len(whirlpool)-1 and not match:
+                    if whirlpool.index(api) == len(
+                            whirlpool) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_ldap_md5(self, hash):
-        hash = str(base64.b64decode(hash[5:])).replace("b'","").replace("\\n'","")
+        hash = str(base64.b64decode(hash[5:])).replace(
+            "b'", "").replace("\\n'", "")
         for api in ldap_md5:
             with yaspin(text="Processing...", color="cyan") as sp:
                 match = api(self.browser, hash, 'md5')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if ldap_md5.index(api) == len(ldap_md5)-1 and not match:
+                    if ldap_md5.index(api) == len(ldap_md5) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")
 
     def check_ldap_sha1(self, hash):
-        hash = str(base64.b64decode(hash[5:])).replace("b'","").replace("\\n'","")
+        hash = str(base64.b64decode(hash[5:])).replace(
+            "b'", "").replace("\\n'", "")
         for api in ldap_sha1:
             with yaspin(text="Processing...", color="cyan") as sp:
                 match = api(self.browser, hash, 'sha1')
                 if match:
                     sp.ok("✔")
-                    print_success("Hash cracked: "  + (Colors.YELLOW) + (Colors.BOLD) + "%s" % match + (Colors.ENDC))
+                    print_success("Hash cracked: " +
+                                  (Colors.YELLOW) +
+                                  (Colors.BOLD) +
+                                  "%s" %
+                                  match +
+                                  (Colors.ENDC))
                     break
                 else:
-                    if ldap_sha1.index(api) == len(ldap_sha1)-1 and not match:
+                    if ldap_sha1.index(api) == len(
+                            ldap_sha1) - 1 and not match:
                         sp.fail("✗")
-                        print_error("Hash not found! Try to crack it yourself.")
+                        print_error(
+                            "Hash not found! Try to crack it yourself.")

@@ -1,12 +1,10 @@
 import zipfile
 import json
 from selenium.webdriver import Chrome
-from selenium.webdriver.common.keys import Keys  
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException
 
 
 class Browser:
@@ -93,22 +91,35 @@ class Browser:
     def wait_until_element_exists(self, by, value):
         sec = 120
         if by == 'xpath':
-            elem = WebDriverWait(self.driver, sec).until(EC.presence_of_element_located((By.XPATH, value)))
+            elem = WebDriverWait(
+                self.driver, sec).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, value)))
         elif by == 'id':
-            elem = WebDriverWait(self.driver, sec).until(EC.presence_of_element_located((By.ID, value)))
+            elem = WebDriverWait(
+                self.driver, sec).until(
+                EC.presence_of_element_located(
+                    (By.ID, value)))
         elif by == 'name':
-            elem = WebDriverWait(self.driver, sec).until(EC.presence_of_element_located((By.NAME, value)))
+            elem = WebDriverWait(
+                self.driver, sec).until(
+                EC.presence_of_element_located(
+                    (By.NAME, value)))
         elif by == 'css':
-            elem = WebDriverWait(self.driver, sec).until(EC.presence_of_element_located((By.CSS_SELECTOR, value)))
+            elem = WebDriverWait(
+                self.driver, sec).until(
+                EC.presence_of_element_located(
+                    (By.CSS_SELECTOR, value)))
         return elem
 
     def wait_page_has_loaded(self):
         while True:
-            page_state = self.driver.execute_script('return document.readyState;')
+            page_state = self.driver.execute_script(
+                'return document.readyState;')
             self.driver.implicitly_wait(1)
             if page_state == 'complete':
                 break
-        return 
+        return
 
     def select_dropdown_by(self, by, value):
         if by == 'xpath':

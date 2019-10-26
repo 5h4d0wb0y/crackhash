@@ -53,42 +53,42 @@ class TestCrackhash(unittest.TestCase):
     def test_md5_myaddr(self):
         """Test MDA5 hash with myaddr."""
         res = scraper.myaddr(self.browser, md5, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_md5_nitrxgen(self):
         """Test MDA5 hash with nitrxgen."""
         res = scraper.nitrxgen(self.browser, md5, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_md5_cmd5(self):
         """Test MDA5 hash with cmd5."""
         res = scraper.cmd5(self.browser, md5, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_md5_hashcrack(self):
         """Test MDA5 hash with hashcrack."""
         res = scraper.hashcrack(self.browser, md5, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_md5_md5decrypt(self):
         """Test MDA5 hash with md5decrypt."""
         res = scraper.md5decrypt(self.browser, md5, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_md5_hashtoolkit(self):
         """Test MDA5 hash with hashtoolkit."""
         res = scraper.hashtoolkit(self.browser, md5, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_md5_md5hashing(self):
         """Test MDA5 hash with md5hashing."""
         res = scraper.md5hashing(self.browser, md5, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_md5_hashkiller(self):
         """Test MDA5 hash with hashkiller."""
         res = scraper.hashkiller(self.browser, md5, 'md5')
-        assert res
+        assert res == 'password'
 
     #
     # SHA1 Tests
@@ -96,27 +96,27 @@ class TestCrackhash(unittest.TestCase):
     def test_sha1_md5decrypt(self):
         """Test SHA1 hash with md5decrypt."""
         res = scraper.md5decrypt(self.browser, sha1, 'sha1')
-        assert res
+        assert res == 'password'
 
     def test_sha1_cmd5(self):
         """Test SHA1 hash with cmd5."""
         res = scraper.cmd5(self.browser, sha1, 'sha1')
-        assert res
+        assert res == 'password'
 
-    #def test_sha1_hashcrack(self):
+    # def test_sha1_hashcrack(self):
     #    """Test SHA1 hash with hashcrack."""
     #    res = scraper.hashcrack(self.browser, sha1, 'sha1')
-    #    assert res
+    #    assert res == 'password'
 
     def test_sha1_md5hashing(self):
         """Test SHA1 hash with md5hashing."""
         res = scraper.md5hashing(self.browser, sha1, 'sha1')
-        assert res
+        assert res == 'password'
 
     def test_sha1_hashkiller(self):
         """Test SHA1 hash with hashkiller."""
         res = scraper.hashkiller(self.browser, sha1, 'sha1')
-        assert res
+        assert res == 'password'
 
     #
     # SHA256 Tests
@@ -124,17 +124,17 @@ class TestCrackhash(unittest.TestCase):
     def test_sha256_md5decrypt(self):
         """Test SHA256 hash with md5decrypt."""
         res = scraper.md5decrypt(self.browser, sha256, 'sha256')
-        assert res
+        assert res == 'password'
 
     def test_sha256_cmd5(self):
         """Test SHA256 hash with cmd5."""
         res = scraper.cmd5(self.browser, sha256, 'sha256')
-        assert res
+        assert res == 'password'
 
     def test_sha256_md5hashing(self):
         """Test SHA256 hash with md5hashing."""
         res = scraper.md5hashing(self.browser, sha256, 'sha256')
-        assert res
+        assert res == 'password'
 
     #
     # SHA384 Tests
@@ -142,17 +142,17 @@ class TestCrackhash(unittest.TestCase):
     def test_sha384_md5decrypt(self):
         """Test SHA384 hash with md5decrypt."""
         res = scraper.md5decrypt(self.browser, sha384, 'sha384')
-        assert res
+        assert res == 'password'
 
     def test_sha384_cmd5(self):
         """Test SHA384 hash with cmd5."""
         res = scraper.cmd5(self.browser, sha384, 'sha384')
-        assert res
+        assert res == 'password'
 
     def test_sha384_md5hashing(self):
         """Test SHA384 hash with md5hashing."""
         res = scraper.md5hashing(self.browser, sha384, 'sha384')
-        assert res
+        assert res == 'password'
 
     #
     # SHA512 Tests
@@ -160,12 +160,12 @@ class TestCrackhash(unittest.TestCase):
     def test_sha512_md5decrypt(self):
         """Test SHA512 hash with md5decrypt."""
         res = scraper.md5decrypt(self.browser, sha512, 'sha512')
-        assert res
+        assert res == 'password'
 
     def test_sha512_md5hashing(self):
         """Test SHA512 hash with md5hashing."""
         res = scraper.md5hashing(self.browser, sha512, 'sha512')
-        assert res
+        assert res == 'password'
 
     #
     # RIPEMD128 Tests
@@ -173,7 +173,7 @@ class TestCrackhash(unittest.TestCase):
     def test_ripemd128_md5hashing(self):
         """Test RIPEMD128 hash with md5hashing."""
         res = scraper.md5hashing(self.browser, ripemd128, 'rmd128')
-        assert res
+        assert res == 'password'
 
     #
     # RIPEMD160 Tests
@@ -181,7 +181,7 @@ class TestCrackhash(unittest.TestCase):
     def test_ripemd160_md5hashing(self):
         """Test RIPEMD160 hash with md5hashing."""
         res = scraper.md5hashing(self.browser, ripemd160, 'rmd160')
-        assert res
+        assert res == 'password'
 
     #
     # RIPEMD256 Tests
@@ -189,7 +189,7 @@ class TestCrackhash(unittest.TestCase):
     def test_ripemd256_md5hashing(self):
         """Test RIPEMD256 hash with md5hashing."""
         res = scraper.md5hashing(self.browser, ripemd256, 'rmd256')
-        assert res
+        assert res == 'password'
 
     #
     # RIPEMD320 Tests
@@ -197,7 +197,7 @@ class TestCrackhash(unittest.TestCase):
     def test_ripemd320_md5hashing(self):
         """Test RIPEMD320 hash with md5hashing."""
         res = scraper.md5hashing(self.browser, ripemd320, 'rmd320')
-        assert res
+        assert res == 'password'
 
     #
     # LM Tests
@@ -205,11 +205,11 @@ class TestCrackhash(unittest.TestCase):
     def test_lm_it64(self):
         """Test LM hash with it64."""
         res = scraper.it64(self.browser, lm, 'lm')
-        assert res
-    #def test_lm_hashcrack(self):
+        assert res == 'password'
+    # def test_lm_hashcrack(self):
     #    """Test LM hash with hashcrack."""
     #    res = scraper.hashcrack(self.browser, lm, 'lm')
-    #    assert res
+    #    assert res == 'password'
 
     #
     # NTLM Tests
@@ -217,22 +217,22 @@ class TestCrackhash(unittest.TestCase):
     def test_ntlm_md5decrypt(self):
         """Test NTLM hash with md5decrypt."""
         res = scraper.md5decrypt(self.browser, ntlm, 'ntlm')
-        assert res
+        assert res == 'password'
 
     def test_ntlm_cmd5(self):
         """Test NTLM hash with cmd5."""
         res = scraper.cmd5(self.browser, ntlm, 'ntlm')
-        assert res
+        assert res == 'password'
 
-    #def test_ntlm_hashcrack(self):
+    # def test_ntlm_hashcrack(self):
     #    """Test NTLM hash with hashcrack."""
     #    res = scraper.hashcrack(self.browser, ntlm, 'ntlm')
-    #    assert res
+    #    assert res == 'password'
 
     def test_ntlm_hashkiller(self):
         """Test NTLM hash with hashkiller."""
         res = scraper.hashkiller(self.browser, ntlm, 'ntlm')
-        assert res
+        assert res == 'password'
 
     #
     # MYSQL Tests
@@ -240,17 +240,17 @@ class TestCrackhash(unittest.TestCase):
     def test_mysql_cmd5(self):
         """Test MYSQL hash with cmd5."""
         res = scraper.cmd5(self.browser, mysql, 'mysql')
-        assert res
+        assert res == 'password'
 
     def test_mysql_hashkiller(self):
         """Test MYSQL hash with hashkiller."""
         res = scraper.hashkiller(self.browser, mysql, 'mysql')
-        assert res
+        assert res == 'password'
 
-    #def test_mysql_hashcrack(self):
+    # def test_mysql_hashcrack(self):
     #    """Test MYSQL hash with hashcrack."""
     #    res = scraper.hashcrack(self.browser, mysql, 'mysql')
-    #    assert res
+    #    assert res == 'password'
 
     #
     # CISCO Tests
@@ -258,27 +258,27 @@ class TestCrackhash(unittest.TestCase):
     def test_cisco_passworddecrypt(self):
         """Test CISCO hash with passworddecrypt."""
         res = scraper.passworddecrypt(self.browser, cisco, 'cisco')
-        assert res
+        assert res == 'password'
 
     def test_cisco_m00nie(self):
         """Test CISCO hash with m00nie."""
         res = scraper.m00nie(self.browser, cisco, 'cisco')
-        assert res
+        assert res == 'password'
 
     def test_cisco_firewallruletest(self):
         """Test CISCO hash with firewallruletest."""
         res = scraper.firewallruletest(self.browser, cisco, 'cisco')
-        assert res
+        assert res == 'password'
 
     def test_cisco_ifm(self):
         """Test CISCO hash with ifm."""
         res = scraper.ifm(self.browser, cisco, 'cisco')
-        assert res
+        assert res == 'password'
 
     def test_cisco_ibeast(self):
         """Test CISCO hash with ibeast."""
         res = scraper.ibeast(self.browser, cisco, 'cisco')
-        assert res
+        assert res == 'password'
 
     #
     # JUNIPER Tests
@@ -286,12 +286,12 @@ class TestCrackhash(unittest.TestCase):
     def test_juniper_passworddecrypt(self):
         """Test JUNIPER hash with passworddecrypt."""
         res = scraper.passworddecrypt(self.browser, juniper, 'juniper')
-        assert res
+        assert res == 'password'
 
     def test_juniper_m00nie(self):
         """Test JUNIPER hash with m00nie."""
         res = scraper.m00nie(self.browser, juniper, 'juniper')
-        assert res
+        assert res == 'password'
 
     #
     # GOST Tests
@@ -299,7 +299,7 @@ class TestCrackhash(unittest.TestCase):
     def test_gost_md5hashing(self):
         """Test GOST hash with md5hashing."""
         res = scraper.md5hashing(self.browser, gost, 'gost')
-        assert res
+        assert res == 'password'
 
     #
     # WHIRLPOOL Tests
@@ -307,7 +307,7 @@ class TestCrackhash(unittest.TestCase):
     def test_whirlpool_md5hashing(self):
         """Test WHIRLPOOL hash with md5hashing."""
         res = scraper.md5hashing(self.browser, whirlpool, 'whirlpool')
-        assert res
+        assert res == 'password'
 
     #
     # LDAP_MD5 Tests
@@ -315,72 +315,82 @@ class TestCrackhash(unittest.TestCase):
 
     def test_ldap_md5_myaddr(self):
         """Test LDAP MD5 hash with myaddr."""
-        hash = str(base64.b64decode(ldap_md5[5:])).replace("b'", "").replace("\\n'", "")
+        hash = str(base64.b64decode(ldap_md5[5:])).replace(
+            "b'", "").replace("\\n'", "")
         res = scraper.myaddr(self.browser, hash, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_ldap_md5_nitrxgen(self):
         """Test LDAP MD5 hash with nitrxgen."""
-        hash = str(base64.b64decode(ldap_md5[5:])).replace("b'", "").replace("\\n'", "")
+        hash = str(base64.b64decode(ldap_md5[5:])).replace(
+            "b'", "").replace("\\n'", "")
         res = scraper.nitrxgen(self.browser, hash, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_ldap_md5_hashcrack(self):
         """Test LDAP MD5 hash with hashcrack."""
-        hash = str(base64.b64decode(ldap_md5[5:])).replace("b'", "").replace("\\n'", "")
+        hash = str(base64.b64decode(ldap_md5[5:])).replace(
+            "b'", "").replace("\\n'", "")
         res = scraper.hashcrack(self.browser, hash, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_ldap_md5_md5decrypt(self):
         """Test LDAP MD5 hash with md5decrypt."""
-        hash = str(base64.b64decode(ldap_md5[5:])).replace("b'", "").replace("\\n'", "")
+        hash = str(base64.b64decode(ldap_md5[5:])).replace(
+            "b'", "").replace("\\n'", "")
         res = scraper.md5decrypt(self.browser, hash, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_ldap_md5_hashtoolkit(self):
         """Test LDAP MD5 hash with hashtoolkit."""
-        hash = str(base64.b64decode(ldap_md5[5:])).replace("b'", "").replace("\\n'", "")
+        hash = str(base64.b64decode(ldap_md5[5:])).replace(
+            "b'", "").replace("\\n'", "")
         res = scraper.hashtoolkit(self.browser, hash, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_ldap_md5_md5hashing(self):
         """Test LDAP MD5 hash with md5hashing."""
-        hash = str(base64.b64decode(ldap_md5[5:])).replace("b'", "").replace("\\n'", "")
+        hash = str(base64.b64decode(ldap_md5[5:])).replace(
+            "b'", "").replace("\\n'", "")
         res = scraper.md5hashing(self.browser, hash, 'md5')
-        assert res
+        assert res == 'password'
 
     def test_ldap_md5_hashkiller(self):
         """Test LDAP MD5 hash with hashkiller."""
-        hash = str(base64.b64decode(ldap_md5[5:])).replace("b'", "").replace("\\n'", "")
+        hash = str(base64.b64decode(ldap_md5[5:])).replace(
+            "b'", "").replace("\\n'", "")
         res = scraper.hashkiller(self.browser, hash, 'md5')
-        assert res
+        assert res == 'password'
 
     #
     # LDAP_SHA1 Tests
     #
     def test_ldap_sha1_md5decrypt(self):
         """Test LDAP SHA1 hash with md5decrypt."""
-        hash = str(base64.b64decode(ldap_sha1[5:])).replace("b'", "").replace("\\n'", "")
+        hash = str(base64.b64decode(ldap_sha1[5:])).replace(
+            "b'", "").replace("\\n'", "")
         res = scraper.md5decrypt(self.browser, hash, 'sha1')
-        assert res
+        assert res == 'password'
 
-    #def test_ldap_sha1_hashcrack(self):
+    # def test_ldap_sha1_hashcrack(self):
     #    """Test LDAP SHA1 hash with hashcrack."""
     #    hash = str(base64.b64decode(ldap_sha1[5:])).replace("b'", "").replace("\\n'", "")
     #    res = scraper.hashcrack(self.browser, hash, 'sha1')
-    #    assert res
+    #    assert res == 'password'
 
     def test_ldap_sha1_md5hashing(self):
         """Test LDAP SHA1 hash with md5hashing."""
-        hash = str(base64.b64decode(ldap_sha1[5:])).replace("b'", "").replace("\\n'", "")
+        hash = str(base64.b64decode(ldap_sha1[5:])).replace(
+            "b'", "").replace("\\n'", "")
         res = scraper.md5hashing(self.browser, hash, 'sha1')
-        assert res
+        assert res == 'password'
 
     def test_ldap_sha1_hashkiller(self):
         """Test LDAP SHA1 hash with hashkiller."""
-        hash = str(base64.b64decode(ldap_sha1[5:])).replace("b'", "").replace("\\n'", "")
+        hash = str(base64.b64decode(ldap_sha1[5:])).replace(
+            "b'", "").replace("\\n'", "")
         res = scraper.hashkiller(self.browser, hash, 'sha1')
-        assert res
+        assert res == 'password'
 
     def tearDown(self):
         """Stop browser."""
