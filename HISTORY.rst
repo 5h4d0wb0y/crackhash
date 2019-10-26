@@ -6,6 +6,7 @@ History
 **v1.0.1**
 ------
 
+* Removed unused imports and variables and conformed to the PEP 8 style guide
 * Added installation of codecov in travis
 * Removed setuptools-changelog package, use only bump2version to change history
 * Fixed phony and added other commands in makefile
