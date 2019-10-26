@@ -5,7 +5,8 @@ History
 **unreleased**
 **v1.0.1**
 ------
-
+* Added installation of codecov in travis
+* Removed setuptools-changelog package, use only bump2version to change history
 * Fixed phony and added other commands in makefile
 * Changed python to python3 in makefile
 * Added chrome browser in travis
