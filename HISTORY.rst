@@ -4,6 +4,7 @@ History
 
 **unreleased**
 **v1.0.1**
+**v1.0.1**
 ------
 
 * Removed unused imports and variables and conformed to the PEP 8 style guide
