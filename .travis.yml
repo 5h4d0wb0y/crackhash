@@ -10,13 +10,19 @@ dist: trusty
 addons:
   chrome: stable
 
+env:
+  global:
+    - CHROMEDRIVER=78.0.3904.70
+
 before_install:
-  - # start your web application and listen on `localhost`
+  - wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$CHROMEDRIVER/chromedriver_linux64.zip
+  - mkdir $HOME/chromedriver && unzip /tmp/chromedriver.zip -d $HOME/chromedriver
+  - export PATH=$HOME/chromedriver:$PATH
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 # Command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
-  - pip install --user codecov
+  - pip install -U codecov
   - pip install -U tox-travis
 
 # Command to run tests, e.g. python setup.py test
