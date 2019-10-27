@@ -13,6 +13,7 @@ addons:
 env:
   global:
     - CHROMEDRIVER=78.0.3904.70
+    - ARE_ON_TRAVIS=1
 
 before_install:
   - wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$CHROMEDRIVER/chromedriver_linux64.zip
