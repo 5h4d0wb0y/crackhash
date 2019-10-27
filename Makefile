@@ -124,6 +124,27 @@ bump-minor: ## bump the minor version
 bump-major: ## bump the major version
 	bump2version major
 
+define RELEASE_NOTES
+import re, os
+
+curtag = os.popen('git describe --tags --abbrev=0').read()
+cmd = 'git log %s..HEAD --oneline' % curtag.rstrip()
+output = os.popen(cmd).readlines()
+
+print('Add the following to the history:\n')
+
+for line in output:
+	if line == '' or line == '\n':
+		pass
+	match = re.sub(r'^[0-9a-fA-F]+\s', '', line.rstrip())
+	print('* %s' % match.capitalize())
+endef
+export RELEASE_NOTES
+
+.PHONY: release-notes
+release-notes: ## extract the latest commits to add to the changelog
+	python -c "$$RELEASE_NOTES"
+
 .PHONY: release
 release: dist ## package and upload a release
 	twine upload dist/*
