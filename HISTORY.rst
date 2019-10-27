@@ -3,10 +3,13 @@ History
 =======
 
 **unreleased**
-**v1.0.1**
-**v1.0.1**
-------
+**v1.0.2**
 
+v1.0.1 (2019-10-27)
+------------------
+
+* Check if the browser has been started on travis
+* Aadded chromedriver installation on travis
 * Removed unused imports and variables and conformed to the PEP 8 style guide
 * Added installation of codecov in travis
 * Removed setuptools-changelog package, use only bump2version to change history
