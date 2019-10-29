@@ -6,7 +6,7 @@ History
 **v1.0.2**
 
 v1.0.1 (2019-10-27)
-------------------
+-------------------
 
 * Check if the browser has been started on travis
 * Aadded chromedriver installation on travis
